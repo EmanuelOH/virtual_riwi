@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class StudentEntity {
+public class StudentEntitys {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,7 +46,7 @@ public class StudentEntity {
     @JoinColumn(name = "class_id")
     private ClassEntity classEntity;
 
-    public StudentEntity(){
+    public StudentEntitys(){
         this.createAt = LocalDateTime.now();
     }
 }
