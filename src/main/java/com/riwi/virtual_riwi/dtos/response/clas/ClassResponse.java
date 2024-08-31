@@ -1,5 +1,6 @@
 package com.riwi.virtual_riwi.dtos.response.clas;
 
+import com.riwi.virtual_riwi.entities.ClassEntity;
 import com.riwi.virtual_riwi.entities.StudentEntitys;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class ClassResponse {
     private String description;
 
     private Boolean active = true;
+
+    private ClassEntity classEntity;
 
     private List<StudentEntitys> students;
 }

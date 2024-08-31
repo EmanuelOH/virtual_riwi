@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "lesson")
 @Getter
@@ -28,7 +30,10 @@ public class LessonEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "class_id", nullable = false)
     private ClassEntity classEntity;
+
+    @OneToMany(mappedBy = "lessonEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<MultiMediaEntity> multiMediaEntities;
 
 }
