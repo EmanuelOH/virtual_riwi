@@ -1,11 +1,8 @@
 package com.riwi.virtual_riwi.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,34 +13,32 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class StudentEntitys {
+@Builder
+public class StudentEntitys<S> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required")
+    @Column(nullable = false)
     private String name;
 
-    @NotBlank(message = "Last_name is required")
+    @Column(nullable = false)
     private String last_name;
 
-    @NotNull(message = "Age is required")
-    @Min(value = 0, message = "Must be greater than zero")
+    @Column(nullable = false)
     private Integer age;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email should be valid")
+    @Column(nullable = false)
     private String email;
 
-    @NotNull(message = "CreateAt is required")
+    @Column(nullable = false)
     private LocalDateTime createAt;
 
-    @NotNull(message = "Status is required")
+    @Column(nullable = false)
     private Boolean active = true;
 
-    @NotNull(message = "Class is required")
     @ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "class_id", nullable = false)
     private ClassEntity classEntity;
 
     public StudentEntitys(){

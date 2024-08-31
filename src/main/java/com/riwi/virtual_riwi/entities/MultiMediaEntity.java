@@ -2,6 +2,7 @@ package com.riwi.virtual_riwi.entities;
 
 import com.riwi.virtual_riwi.enums.TypeMultiMedia;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +20,11 @@ public class MultiMediaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "type is required")
+    @Column(nullable = false)
     private TypeMultiMedia type;
 
-    @NotNull(message = "id_lesson is required")
-    @OneToOne
+    @NotNull(message = "id_lesson is required!")
+    @ManyToOne
     @JoinColumn(name = "id_lesson")
     private LessonEntity lessonEntity;
 }
