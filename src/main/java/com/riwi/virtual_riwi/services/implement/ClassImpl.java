@@ -6,10 +6,15 @@ import com.riwi.virtual_riwi.entities.ClassEntity;
 import com.riwi.virtual_riwi.repositories.interfaces.ClassRepository;
 import com.riwi.virtual_riwi.services.interfaces.IClassServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class ClassImpl implements IClassServices {
 
     @Autowired
@@ -18,11 +23,15 @@ public class ClassImpl implements IClassServices {
     @Override
     public ClassEntity create(ClassRequest classRequest) {
 
-        ClassEntity classEntity = new ClassEntity();
+        if (classRequest.getName() == null || classRequest.getDescription() == null) {
+            throw new IllegalArgumentException("Name and Description must not be null");
+        }
 
-        classEntity.builder()
+        ClassEntity classEntity = ClassEntity.builder()
                 .name(classRequest.getName())
-                .description(classRequest.getDescription());
+                .description(classRequest.getDescription())
+                .active(true)
+                .build();
 
         return classRepository.save(classEntity);
     }
@@ -60,5 +69,10 @@ public class ClassImpl implements IClassServices {
         classResponse.setActive(classEntity.getActive());
 
         return classResponse;
+    }
+
+    @Override
+    public Page<ClassEntity> pageAllElement(String name, String description, Integer pages, Integer size) {
+        return classRepository.pageAllElement(name, description, PageRequest.of(pages, size));
     }
 }
