@@ -22,6 +22,9 @@ public class MultiMediaEntity {
     @NotNull(message = "type is required")
     private TypeMultiMedia type;
 
+    @NotNull(message = "type is required")
+    private String url;
+
     @NotNull(message = "id_lesson is required")
     @OneToOne
     @JoinColumn(name = "id_lesson")

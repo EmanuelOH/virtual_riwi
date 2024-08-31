@@ -11,6 +11,7 @@ import com.riwi.virtual_riwi.services.interfaces.ILessonService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LessonImpl implements ILessonService {
@@ -22,17 +23,25 @@ public class LessonImpl implements ILessonService {
     private ClassRepository classRepository;
 
     @Override
+    @Transactional //una transacción es una secuencia de operaciones que deben ejecutarse
+    // de manera atómica: o todas se completan con éxito o ninguna se realiza.
     public void archive(Long id) {
         LessonEntity lessonEntity = lessonRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id not found"));
+                .orElseThrow(() -> new RuntimeException("Lesson with ID " + id + " not found"));
 
         lessonEntity.setActive(false);
+
+        lessonRepository.save(lessonEntity);
     }
 
     @Override
+    @Transactional
     public LessonEntity create(LessonRequest lessonRequest) {
-        ClassEntity classEntity = classRepository.findById(lessonRequest.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Class with ID " + lessonRequest.getId() + " not found"));
+        Long classId = lessonRequest.getClassEntity().getId();
+
+        System.out.println(classId);
+        ClassEntity classEntity = classRepository.findById(classId)
+                .orElseThrow(() -> new EntityNotFoundException("Class with ID " + classId + " not found"));
 
         LessonEntity lessonEntity = LessonEntity.builder()
                 .title(lessonRequest.getTitle())
@@ -43,6 +52,7 @@ public class LessonImpl implements ILessonService {
 
         return lessonRepository.save(lessonEntity);
     }
+
 
     @Override
     public LessonResponse readById(Long id) {

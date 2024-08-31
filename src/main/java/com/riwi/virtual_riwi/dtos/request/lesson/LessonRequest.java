@@ -12,9 +12,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class LessonRequest {
-    @NotNull(message = "id is required")
-    private Long id;
-
     @NotBlank(message = "Title is required")
     private String title;
 

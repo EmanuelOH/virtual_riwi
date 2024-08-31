@@ -29,6 +29,6 @@ public class ClassEntity {
     @Column(nullable = false)
     private Boolean active = true;
 
-    @OneToMany(mappedBy = "classEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StudentEntitys> studentEntities;
 }

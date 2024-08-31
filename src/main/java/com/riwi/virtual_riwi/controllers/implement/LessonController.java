@@ -26,11 +26,9 @@ public class LessonController implements ILessonController {
         try {
             lessonService.archive(id);
             return ResponseEntity.noContent().build();
-        }
-        catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-
     }
 
     @Override
@@ -41,7 +39,7 @@ public class LessonController implements ILessonController {
     }
 
     @Override
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/multimedia")
     public ResponseEntity<LessonResponse> readById(@PathVariable Long id) {
         try {
             LessonResponse lessonResponse = lessonService.readById(id);
