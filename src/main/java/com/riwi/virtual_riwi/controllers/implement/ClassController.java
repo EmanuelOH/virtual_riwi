@@ -24,8 +24,8 @@ public class ClassController implements IClassController{
     @Override
     @PostMapping
     public ResponseEntity<ClassEntity> create(@Valid @RequestBody ClassRequest classRequest) {
-        ClassEntity createdClass = classServices.create(classRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdClass);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(classServices.create(classRequest));
     }
 
     @Override

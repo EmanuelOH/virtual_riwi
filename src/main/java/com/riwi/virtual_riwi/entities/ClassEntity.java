@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "class")
 @Getter
@@ -25,4 +28,7 @@ public class ClassEntity {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    @OneToMany(mappedBy = "classEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<StudentEntitys> studentEntities;
 }

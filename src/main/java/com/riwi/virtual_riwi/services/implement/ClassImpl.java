@@ -42,6 +42,7 @@ public class ClassImpl implements IClassServices {
             classResponse.setName(classEntity.getName());
             classResponse.setDescription(classEntity.getDescription());
             classResponse.setActive(classEntity.getActive());
+            classResponse.setStudents(classEntity.getStudentEntities());
             listClassResponse.add(classResponse);
         }
         return listClassResponse;
@@ -56,6 +57,8 @@ public class ClassImpl implements IClassServices {
         classResponse.setName(classEntity.getName());
         classResponse.setDescription(classEntity.getDescription());
         classResponse.setActive(classEntity.getActive());
+        classResponse.setStudents(classEntity.getStudentEntities());
+
         return classResponse;
     }
 
