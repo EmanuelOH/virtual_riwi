@@ -4,10 +4,7 @@ import com.riwi.virtual_riwi.enums.TypeMultiMedia;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "multi_media")
@@ -15,6 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class MultiMediaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

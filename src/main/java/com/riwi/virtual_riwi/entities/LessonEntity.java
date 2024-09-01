@@ -28,7 +28,6 @@ public class LessonEntity {
     @Column(nullable = false)
     private Boolean active = true;
 
-
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
     private ClassEntity classEntity;
