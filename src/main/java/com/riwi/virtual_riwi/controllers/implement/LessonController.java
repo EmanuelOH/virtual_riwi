@@ -22,7 +22,7 @@ public class LessonController implements ILessonController {
 
     @Override
     @PatchMapping("/{id}/disable")
-    public ResponseEntity<Void> archive(@PathVariable Long id) {
+    public ResponseEntity<Void> archiveController(@PathVariable Long id) {
         try {
             lessonService.archive(id);
             return ResponseEntity.noContent().build();

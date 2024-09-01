@@ -23,16 +23,10 @@ public class MultiMediaEntity {
     @Column(nullable = false)
     private TypeMultiMedia type;
 
-<<<<<<< HEAD
-    @NotNull(message = "id_lesson is required!")
-    @ManyToOne
-=======
-    @NotNull(message = "type is required")
+    @Column(nullable = false)
     private String url;
 
-    @NotNull(message = "id_lesson is required")
-    @OneToOne
->>>>>>> 8852860eaa02c0d2c57b5eba5fad780077a80df1
-    @JoinColumn(name = "id_lesson")
+    @ManyToOne
+    @JoinColumn(name = "id_lesson", nullable = false)
     private LessonEntity lessonEntity;
 }

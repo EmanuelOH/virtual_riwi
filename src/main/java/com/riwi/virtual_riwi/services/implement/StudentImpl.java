@@ -98,7 +98,7 @@ public class StudentImpl implements IStudentService {
     }
 
     @Override
-    public Page<StudentEntitys> pageAllElement(String name, Integer page, Integer size) {
+    public Page<StudentEntitys> pageAllElementName(String name, Integer page, Integer size) {
         return studentRepository.pageAllElement(name, PageRequest.of(page, size));
     }
 }

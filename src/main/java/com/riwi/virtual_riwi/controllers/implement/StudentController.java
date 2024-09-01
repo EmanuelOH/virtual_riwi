@@ -77,7 +77,7 @@ public class StudentController implements IStudentController {
 
     @Override
     @PatchMapping("/students/{id}/disable")
-    public ResponseEntity<Long> archiveController(Long id) {
+    public ResponseEntity<Void> archiveController(Long id) {
         try {
             studentService.archive(id);
             return ResponseEntity.ok().build(); // Returns a 200 OK status if all goes well
@@ -88,14 +88,14 @@ public class StudentController implements IStudentController {
 
     @Override
     @GetMapping("/page")
-    public ResponseEntity<Page<StudentEntitys>> pageAllElement(
+    public ResponseEntity<Page<StudentEntitys>> pageAllElementName(
             @RequestParam(value = "name", defaultValue = "") String name,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size) {
         if (page < 0 || size <= 0) {
             return ResponseEntity.badRequest().body(null);
         }
-        Page<StudentEntitys> result = studentService.pageAllElement(name, page, size);
+        Page<StudentEntitys> result = studentService.pageAllElementName(name, page, size);
         return ResponseEntity.ok(result);
     }
 }

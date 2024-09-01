@@ -11,6 +11,6 @@ public interface IStudentService extends
         ReadAllService<StudentResponse>,
         ReadByIdService<StudentResponse, Long>,
         ArchiveService<Long>,
-        PageAllElementService<StudentEntitys, String, Integer, Integer>{
+        PageAllElementServiceName<StudentEntitys, String, Integer, Integer>{
 
 }

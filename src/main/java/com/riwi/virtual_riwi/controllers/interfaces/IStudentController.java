@@ -12,5 +12,5 @@ public interface IStudentController extends
         ReadAllController<StudentResponse>,
         ReadByIdController<StudentResponse, Long>,
         ArchiveController<Long>,
-        PageAllElementController<StudentEntitys, String, Integer, Integer>{
+        PageAllElementControllerName<StudentEntitys, String, Integer, Integer>{
 }
